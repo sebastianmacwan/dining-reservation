@@ -52,13 +52,17 @@ const Signup = () => {
   const passwordStrength = getPasswordStrength();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pt-20 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-200/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent-200/30 rounded-full blur-3xl"></div>
+      </div>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="text-center">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-xl">
+        <div className="text-center relative">
+          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mb-6 shadow-xl">
             <ChefHat className="text-white" size={28} />
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Create your account</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-dark-800 mb-2">Create your account</h2>
           <p className="text-gray-600 mb-8">
             Already have an account?{' '}
             <Link to="/login" className="font-semibold text-primary-600 hover:text-primary-500 transition-colors">
@@ -69,7 +73,7 @@ const Signup = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-10 px-6 shadow-2xl sm:rounded-2xl sm:px-10 border border-gray-100">
+        <div className="relative bg-white/95 backdrop-blur-sm py-10 px-6 shadow-2xl sm:rounded-2xl sm:px-10 border border-primary-100">
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm flex items-center">
@@ -80,7 +84,7 @@ const Signup = () => {
 
             <div className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-3">
+                <label htmlFor="name" className="block text-sm font-semibold text-dark-700 mb-3">
                   Full name
                 </label>
                 <div className="relative group">
@@ -93,14 +97,14 @@ const Signup = () => {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-gray-50 focus:bg-white"
+                    className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
                     placeholder="Enter your full name"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-3">
+                <label htmlFor="email" className="block text-sm font-semibold text-dark-700 mb-3">
                   Email address
                 </label>
                 <div className="relative group">
@@ -113,14 +117,14 @@ const Signup = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-gray-50 focus:bg-white"
+                    className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
                     placeholder="Enter your email"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-3">
+                <label htmlFor="password" className="block text-sm font-semibold text-dark-700 mb-3">
                   Password
                 </label>
                 <div className="relative group">
@@ -133,7 +137,7 @@ const Signup = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-12 pr-12 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-gray-50 focus:bg-white"
+                    className="w-full pl-12 pr-12 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
                     placeholder="Create a password"
                   />
                   <button
@@ -157,7 +161,7 @@ const Signup = () => {
                         {passwordStrength.label}
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-primary-100 rounded-full h-2">
                       <div 
                         className={`h-2 rounded-full transition-all duration-300 ${passwordStrength.color}`}
                         style={{ width: `${passwordStrength.strength}%` }}
@@ -168,7 +172,7 @@ const Signup = () => {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-3">
+                <label htmlFor="confirmPassword" className="block text-sm font-semibold text-dark-700 mb-3">
                   Confirm password
                 </label>
                 <div className="relative group">
@@ -181,7 +185,7 @@ const Signup = () => {
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full pl-12 pr-12 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-gray-50 focus:bg-white"
+                    className="w-full pl-12 pr-12 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
                     placeholder="Confirm your password"
                   />
                   <button
@@ -219,7 +223,7 @@ const Signup = () => {
                 required
                 className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded transition-colors mt-1"
               />
-              <label htmlFor="agree-terms" className="ml-3 block text-sm text-gray-700 leading-relaxed">
+              <label htmlFor="agree-terms" className="ml-3 block text-sm text-dark-600 leading-relaxed">
                 I agree to the{' '}
                 <Link to="/terms" className="text-primary-600 hover:text-primary-500 font-medium transition-colors">
                   Terms of Service
@@ -234,7 +238,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center"
+              className="group relative w-full bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center"
             >
               {loading ? (
                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
@@ -247,7 +251,7 @@ const Signup = () => {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-gray-200">
+          <div className="mt-8 pt-6 border-t border-primary-200">
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 Already have an account?{' '}

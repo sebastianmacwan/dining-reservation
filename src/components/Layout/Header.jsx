@@ -45,16 +45,16 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
                   <ChefHat className="text-white" size={20} />
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="hidden sm:block">
-                <span className="font-bold text-xl lg:text-2xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                <span className="font-bold text-xl lg:text-2xl bg-gradient-to-r from-dark-800 to-dark-600 bg-clip-text text-transparent">
                   DineBook
                 </span>
-                <div className="text-xs text-gray-500 -mt-1">Premium Dining</div>
+                <div className="text-xs text-primary-600 -mt-1 font-medium">Premium Dining</div>
               </div>
             </Link>
           </div>
@@ -73,7 +73,7 @@ const Header = () => {
                 className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
                   isActive(item.path)
                     ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                    : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
                 }`}
               >
                 {item.label}
@@ -89,7 +89,7 @@ const Header = () => {
                 className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
                   isActive('/dashboard')
                     ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                    : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
                 }`}
               >
                 My Bookings
@@ -106,29 +106,29 @@ const Header = () => {
               <div className="relative">
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center space-x-3 text-gray-700 hover:text-primary-600 transition-all duration-300 p-2 rounded-xl hover:bg-gray-50 group"
+                  className="flex items-center space-x-3 text-dark-600 hover:text-primary-600 transition-all duration-300 p-2 rounded-xl hover:bg-primary-50 group"
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center group-hover:from-primary-200 group-hover:to-primary-300 transition-all duration-300">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary-100 to-accent-100 rounded-xl flex items-center justify-center group-hover:from-primary-200 group-hover:to-accent-200 transition-all duration-300 shadow-md">
                     <User size={18} className="text-primary-600" />
                   </div>
                   <div className="text-left">
-                    <div className="text-sm font-semibold">{user.name}</div>
-                    <div className="text-xs text-gray-500 capitalize">{user.role}</div>
+                    <div className="text-sm font-semibold text-dark-700">{user.name}</div>
+                    <div className="text-xs text-primary-600 capitalize font-medium">{user.role}</div>
                   </div>
                 </button>
 
                 {isUserMenuOpen && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setIsUserMenuOpen(false)}></div>
-                    <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl py-2 z-20 border border-gray-100">
-                      <div className="px-4 py-3 border-b border-gray-100">
-                        <div className="font-semibold text-gray-900">{user.name}</div>
-                        <div className="text-sm text-gray-500">{user.email}</div>
+                    <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl py-2 z-20 border border-primary-100">
+                      <div className="px-4 py-3 border-b border-primary-100">
+                        <div className="font-semibold text-dark-800">{user.name}</div>
+                        <div className="text-sm text-primary-600">{user.email}</div>
                       </div>
                       
                       <Link
                         to="/dashboard"
-                        className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="flex items-center px-4 py-3 text-sm text-dark-600 hover:bg-primary-50 transition-colors"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <Calendar size={18} className="mr-3 text-primary-500" />
@@ -138,7 +138,7 @@ const Header = () => {
                       {user.role === 'admin' && (
                         <Link
                           to="/admin"
-                          className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                          className="flex items-center px-4 py-3 text-sm text-dark-600 hover:bg-primary-50 transition-colors"
                           onClick={() => setIsUserMenuOpen(false)}
                         >
                           <Settings size={18} className="mr-3 text-primary-500" />
@@ -146,10 +146,10 @@ const Header = () => {
                         </Link>
                       )}
                       
-                      <div className="border-t border-gray-100 mt-2 pt-2">
+                      <div className="border-t border-primary-100 mt-2 pt-2">
                         <button
                           onClick={handleLogout}
-                          className="flex items-center w-full px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                          className="flex items-center w-full px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors rounded-lg mx-2"
                         >
                           <LogOut size={18} className="mr-3" />
                           Sign Out
@@ -163,13 +163,13 @@ const Header = () => {
               <div className="flex items-center space-x-3">
                 <Link
                   to="/login"
-                  className="text-gray-700 hover:text-primary-600 px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg hover:bg-gray-50"
+                  className="text-dark-600 hover:text-primary-600 px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg hover:bg-primary-50"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/signup"
-                  className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Sign Up
                 </Link>
@@ -181,7 +181,7 @@ const Header = () => {
           <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative p-2 text-gray-700 hover:text-primary-600 transition-colors rounded-lg hover:bg-gray-50"
+              className="relative p-2 text-dark-600 hover:text-primary-600 transition-colors rounded-lg hover:bg-primary-50"
             >
               <div className="w-6 h-6 relative">
                 <span className={`absolute block w-6 h-0.5 bg-current transform transition-all duration-300 ${
@@ -202,7 +202,7 @@ const Header = () => {
         <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <div className="py-4 space-y-2 border-t border-gray-200/50">
+          <div className="py-4 space-y-2 border-t border-primary-200/50 bg-white/95 backdrop-blur-sm">
             {[
               { path: '/', label: 'Home' },
               { path: '/restaurants', label: 'Restaurants' },
@@ -215,7 +215,7 @@ const Header = () => {
                 className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
                   isActive(item.path)
                     ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                    : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -230,7 +230,7 @@ const Header = () => {
                   className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
                     isActive('/dashboard')
                       ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                      : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -240,17 +240,17 @@ const Header = () => {
                 {user.role === 'admin' && (
                   <Link
                     to="/admin"
-                    className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-all duration-300 rounded-lg"
+                    className="block px-4 py-3 text-sm font-medium text-dark-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 rounded-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Admin Panel
                   </Link>
                 )}
                 
-                <div className="border-t border-gray-200 mt-4 pt-4">
+                <div className="border-t border-primary-200 mt-4 pt-4">
                   <div className="px-4 py-2">
-                    <div className="text-sm font-semibold text-gray-900">{user.name}</div>
-                    <div className="text-xs text-gray-500">{user.email}</div>
+                    <div className="text-sm font-semibold text-dark-800">{user.name}</div>
+                    <div className="text-xs text-primary-600">{user.email}</div>
                   </div>
                   <button
                     onClick={handleLogout}
@@ -261,17 +261,17 @@ const Header = () => {
                 </div>
               </>
             ) : (
-              <div className="space-y-2 border-t border-gray-200 pt-4">
+              <div className="space-y-2 border-t border-primary-200 pt-4">
                 <Link
                   to="/login"
-                  className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-all duration-300 rounded-lg"
+                  className="block px-4 py-3 text-sm font-medium text-dark-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/signup"
-                  className="block mx-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl text-sm font-semibold text-center transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="block mx-4 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl text-sm font-semibold text-center transition-all duration-300 transform hover:scale-105 shadow-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign Up
