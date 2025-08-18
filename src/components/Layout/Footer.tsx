@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
 
+import { ChefHat } from 'lucide-react';
+
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white relative overflow-hidden">

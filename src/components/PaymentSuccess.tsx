@@ -27,16 +27,23 @@ const PaymentSuccess: React.FC = () => {
     }, [location, navigate]);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30 pt-20">
+            <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-primary-100">
                 <div className="flex justify-center mb-4">
-                    <CheckCircle className="text-green-500 w-16 h-16" />
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center shadow-lg">
+                        <CheckCircle className="text-primary-600 w-12 h-12" />
+                    </div>
                 </div>
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">Payment Complete</h1>
+                <h1 className="text-3xl font-bold text-dark-800 mb-4">Payment Complete</h1>
                 {message ? (
-                    <p className="text-gray-600 break-words">{message}</p>
+                    <div className="bg-primary-50 p-4 rounded-xl border border-primary-200 mb-4">
+                        <p className="text-primary-700 break-words">{message}</p>
+                    </div>
                 ) : (
-                    <p className="text-gray-600">Verifying payment details...</p>
+                    <div className="text-center py-4">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto mb-2"></div>
+                        <p className="text-gray-600">Verifying payment details...</p>
+                    </div>
                 )}
             </div>
         </div>

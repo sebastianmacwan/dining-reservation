@@ -47,10 +47,10 @@ const Contact: React.FC = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-inter">
-      <div className="max-w-4xl w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-inter pt-20">
+      <div className="max-w-4xl w-full space-y-8 bg-white/95 backdrop-blur-sm p-10 rounded-2xl shadow-2xl border border-primary-100">
         {successMessage && (
-          <div className="mb-4 p-4 border border-green-500 text-green-700 bg-green-100 rounded">
+          <div className="mb-4 p-4 border border-primary-500 text-primary-700 bg-primary-100 rounded-xl">
             {successMessage}
           </div>
         )}
@@ -69,23 +69,29 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <div className="space-y-6">
             <div className="flex items-start space-x-4">
-              <Mail className="text-indigo-600 flex-shrink-0" size={24} />
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Mail className="text-primary-600" size={20} />
+              </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">Email</h3>
+                <h3 className="text-xl font-semibold text-dark-800">Email</h3>
                 <p className="text-gray-600">contact@diningapp.com</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
-              <Phone className="text-indigo-600 flex-shrink-0" size={24} />
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Phone className="text-primary-600" size={20} />
+              </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">Phone</h3>
+                <h3 className="text-xl font-semibold text-dark-800">Phone</h3>
                 <p className="text-gray-600">+1 (123) 456-7890</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
-              <MapPin className="text-indigo-600 flex-shrink-0" size={24} />
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                <MapPin className="text-primary-600" size={20} />
+              </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">Office</h3>
+                <h3 className="text-xl font-semibold text-dark-800">Office</h3>
                 <p className="text-gray-600">123 Main Street, Suite 400<br />City, State 12345</p>
               </div>
             </div>
@@ -114,7 +120,7 @@ const Contact: React.FC = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="appearance-none rounded-xl relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
@@ -127,7 +133,7 @@ const Contact: React.FC = () => {
                 name="message"
                 rows={4}
                 required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="appearance-none rounded-xl relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
                 placeholder="Your Message"
                 value={formData.message}
                 onChange={handleChange}
@@ -137,7 +143,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:hover:scale-100"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>

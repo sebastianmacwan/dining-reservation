@@ -108,14 +108,15 @@ const Booking: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30 pt-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-primary-100">
         {/* Header */}
-        <div className="bg-primary-500 text-white p-6">
+        <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white p-6">
           <h1 className="text-2xl font-bold mb-2">Book Your Table</h1>
           <div className="flex items-center space-x-4">
             <h2 className="text-lg">{selectedRestaurant.name}</h2>
-            <span className="bg-white/20 px-3 py-1 rounded-full text-sm">{selectedRestaurant.cuisine}</span>
+            <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">{selectedRestaurant.cuisine}</span>
           </div>
         </div>
 
@@ -134,8 +135,8 @@ const Booking: React.FC = () => {
                   onClick={() => setSelectedDate(date)}
                   className={`p-3 text-center rounded-lg border transition-all ${
                     selectedDate === date
-                      ? 'border-primary-500 bg-primary-50 text-primary-700'
-                      : 'border-gray-300 hover:border-primary-300 hover:bg-primary-50'
+                      ? 'border-primary-500 bg-primary-100 text-primary-700 shadow-lg'
+                      : 'border-gray-300 hover:border-primary-300 hover:bg-primary-50 shadow-sm hover:shadow-md'
                   }`}
                 >
                   <div className="text-sm font-medium">
@@ -165,10 +166,10 @@ const Booking: React.FC = () => {
                     disabled={!slot.available}
                     className={`p-3 text-center rounded-lg border transition-all ${
                       !slot.available
-                        ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
+                        ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed opacity-50'
                         : selectedTime === slot.time
-                        ? 'border-primary-500 bg-primary-50 text-primary-700'
-                        : 'border-gray-300 hover:border-primary-300 hover:bg-primary-50'
+                        ? 'border-primary-500 bg-primary-100 text-primary-700 shadow-lg'
+                        : 'border-gray-300 hover:border-primary-300 hover:bg-primary-50 shadow-sm hover:shadow-md'
                     }`}
                   >
                     {slot.time}
@@ -205,15 +206,15 @@ const Booking: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setGuests(Math.max(1, guests - 1))}
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500 hover:text-primary-600"
+                className="w-12 h-12 rounded-xl border border-gray-300 flex items-center justify-center hover:border-primary-500 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 -
               </button>
-              <span className="text-xl font-semibold w-12 text-center">{guests}</span>
+              <span className="text-2xl font-bold w-16 text-center text-primary-600">{guests}</span>
               <button
                 type="button"
                 onClick={() => setGuests(Math.min(20, guests + 1))}
-                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary-500 hover:text-primary-600"
+                className="w-12 h-12 rounded-xl border border-gray-300 flex items-center justify-center hover:border-primary-500 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 +
               </button>
@@ -222,7 +223,7 @@ const Booking: React.FC = () => {
 
           {/* Special Requests */}
           <div>
-            <label className="block text-lg font-semibold text-gray-900 mb-4">
+            <label className="block text-lg font-semibold text-dark-800 mb-4">
               Special Requests (Optional)
             </label>
             <textarea
@@ -230,13 +231,13 @@ const Booking: React.FC = () => {
               onChange={(e) => setSpecialRequests(e.target.value)}
               rows={3}
               placeholder="Any dietary restrictions, celebrations, or special accommodations..."
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
             />
           </div>
 
           {/* Booking Summary */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Booking Summary</h3>
+          <div className="bg-primary-50/50 p-6 rounded-xl border border-primary-200">
+            <h3 className="text-lg font-semibold text-dark-800 mb-4">Booking Summary</h3>
             <div className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-gray-600">Restaurant:</span>
@@ -254,8 +255,8 @@ const Booking: React.FC = () => {
                 <span className="text-gray-600">Guests:</span>
                 <span className="font-medium">{guests}</span>
               </div>
-              <div className="border-t pt-3 flex justify-between">
-                <span className="font-semibold text-gray-900">Total:</span>
+              <div className="border-t border-primary-300 pt-3 flex justify-between">
+                <span className="font-semibold text-dark-800">Total:</span>
                 <span className="font-semibold text-primary-600">${guests * 25}</span>
               </div>
             </div>
@@ -265,7 +266,7 @@ const Booking: React.FC = () => {
           <button
             type="submit"
             disabled={loading || !selectedDate || !selectedTime}
-            className="w-full bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center"
+            className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center"
           >
             {loading ? (
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
@@ -277,6 +278,7 @@ const Booking: React.FC = () => {
             )}
           </button>
         </form>
+      </div>
       </div>
     </div>
   );

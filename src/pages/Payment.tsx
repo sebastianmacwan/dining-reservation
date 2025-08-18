@@ -323,15 +323,29 @@ const Payment: React.FC = () => {
   const options = { clientSecret, appearance };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Stripe Payment</h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30 pt-20">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-primary-100">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <CreditCard className="text-white" size={28} />
+            </div>
+            <h1 className="text-3xl font-bold text-dark-800 mb-2">Secure Payment</h1>
+            <p className="text-gray-600">Complete your reservation payment</p>
+          </div>
+          
       {clientSecret ? (
         <Elements stripe={stripePromise} options={options}>
           <CheckoutForm />
         </Elements>
       ) : (
-        <p>Loading payment details...</p>
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading payment details...</p>
+        </div>
       )}
+        </div>
+      </div>
     </div>
   );
 };
