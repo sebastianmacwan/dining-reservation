@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
-    <div className="font-inter bg-gray-50 text-gray-800">
+    <div className="font-inter bg-gradient-to-br from-gray-50 via-white to-primary-50/30 text-gray-800 pt-20">
       {/* Hero Section with Parallax Effect and Overlay */}
       <div 
         className="relative h-[70vh] flex items-center justify-center p-4 bg-fixed bg-cover bg-center overflow-hidden"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1550968940-27e1f44e1c25?q=80&w=2940&auto=format&fit=crop')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-800 to-purple-800 opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-800 via-primary-700 to-dark-800 opacity-80"></div>
         <div className="text-center relative z-10 text-white max-w-4xl mx-auto px-4 md:px-8">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-lg animate-fade-in-up">
             Connecting You with Culinary Delights
@@ -24,7 +24,7 @@ const About: React.FC = () => {
       {/* Mission Section with a subtle background */}
       <div className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-dark-800 leading-tight">
             Our Mission: A Story for Every Meal
           </h2>
           <p className="mt-6 text-base md:text-lg text-gray-700 leading-relaxed">
@@ -34,9 +34,9 @@ const About: React.FC = () => {
       </div>
 
       {/* Values Section with enhanced cards and hover effects */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="py-20 px-4 sm:px-6 lg:px-8 bg-primary-50/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 text-center mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-dark-800 text-center mb-4 leading-tight">
             Why Choose Us?
           </h2>
           <p className="text-center text-base md:text-lg text-gray-600 mb-12">
@@ -44,27 +44,35 @@ const About: React.FC = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Value Card: Quality */}
-            <div className="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-lg transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out">
-              <Star className="text-indigo-600 mb-4 transform scale-125" size={48} />
-              <h3 className="text-xl font-bold text-gray-900">Quality</h3>
+            <div className="flex flex-col items-center text-center p-8 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out border border-primary-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                <Star className="text-primary-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-dark-800">Quality</h3>
               <p className="mt-2 text-gray-600">A hand-picked selection of top-rated restaurants, ensuring a memorable meal.</p>
             </div>
             {/* Value Card: Reliability */}
-            <div className="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-lg transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out">
-              <Handshake className="text-indigo-600 mb-4 transform scale-125" size={48} />
-              <h3 className="text-xl font-bold text-gray-900">Reliability</h3>
+            <div className="flex flex-col items-center text-center p-8 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out border border-primary-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-200 to-primary-300 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                <Handshake className="text-primary-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-dark-800">Reliability</h3>
               <p className="mt-2 text-gray-600">Instant confirmations and secure bookings every single time.</p>
             </div>
             {/* Value Card: Partnership */}
-            <div className="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-lg transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out">
-              <ChefHat className="text-indigo-600 mb-4 transform scale-125" size={48} />
-              <h3 className="text-xl font-bold text-gray-900">Partnership</h3>
+            <div className="flex flex-col items-center text-center p-8 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out border border-primary-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-300 to-primary-400 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                <ChefHat className="text-primary-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-dark-800">Partnership</h3>
               <p className="mt-2 text-gray-600">We work with chefs to offer exclusive tables and experiences just for you.</p>
             </div>
             {/* Value Card: Passion */}
-            <div className="flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-lg transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out">
-              <Heart className="text-indigo-600 mb-4 transform scale-125" size={48} />
-              <h3 className="text-xl font-bold text-gray-900">Passion</h3>
+            <div className="flex flex-col items-center text-center p-8 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-in-out border border-primary-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                <Heart className="text-white" size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-dark-800">Passion</h3>
               <p className="mt-2 text-gray-600">Our team is genuinely passionate about food, hospitality, and your satisfaction.</p>
             </div>
           </div>
@@ -72,16 +80,20 @@ const About: React.FC = () => {
       </div>
 
       {/* Call to Action Section with enhanced gradient and button */}
-      <div className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-700 to-purple-700 text-white text-center shadow-inner">
+      <div className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-700 via-primary-600 to-dark-700 text-white text-center shadow-inner relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+        </div>
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+          <h2 className="relative text-4xl md:text-5xl font-extrabold leading-tight">
             Ready to Find Your Next Favorite Spot?
           </h2>
-          <p className="mt-4 text-xl md:text-2xl font-light">
+          <p className="relative mt-4 text-xl md:text-2xl font-light">
             Start your culinary journey with us today.
           </p>
-          <Link to="/" className="mt-10 inline-flex items-center px-10 py-5 border border-transparent text-lg font-bold rounded-full shadow-lg text-indigo-700 bg-white hover:bg-gray-200 transform hover:scale-105 transition-all duration-300">
-                         Get Started
+          <Link to="/" className="relative mt-10 inline-flex items-center px-10 py-5 border border-transparent text-lg font-bold rounded-2xl shadow-2xl text-primary-700 bg-white hover:bg-gray-100 transform hover:scale-105 transition-all duration-300">
+            Get Started
             <ArrowRight className="ml-3" size={24} />
           </Link>
         </div>

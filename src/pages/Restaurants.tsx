@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Search, Filter, Star, MapPin, Clock, DollarSign } from 'lucide-react';
+import { Search, Filter, Star, MapPin, Clock, DollarSign, ChefHat } from 'lucide-react';
 
 interface Restaurant {
   id: string;
@@ -132,24 +132,35 @@ setRestaurants(normalizedData);
   const priceRanges = ['$', '$$', '$$$', '$$$$'];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30 pt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 mb-8 border border-primary-100">
+        <div className="flex items-center mb-6">
+          <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+            <ChefHat className="text-white" size={24} />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-dark-800">Find Your Perfect Restaurant</h1>
+            <p className="text-gray-600">Discover amazing dining experiences</p>
+          </div>
+        </div>
+        
         <form onSubmit={handleSearch} className="mb-6">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-primary-500 transition-colors" size={20} />
               <input
                 type="text"
                 placeholder="Search restaurants..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm text-lg"
               />
             </div>
             <button
               type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               Search
             </button>
@@ -160,7 +171,7 @@ setRestaurants(normalizedData);
           <select
             value={selectedCuisine}
             onChange={(e) => setSelectedCuisine(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
           >
             <option value="">All Cuisines</option>
             {cuisines.map((cuisine) => (
@@ -171,7 +182,7 @@ setRestaurants(normalizedData);
           <select
             value={selectedPriceRange}
             onChange={(e) => setSelectedPriceRange(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
           >
             <option value="">All Prices</option>
             {priceRanges.map((price) => (
@@ -182,14 +193,14 @@ setRestaurants(normalizedData);
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
           >
             <option value="rating">Sort by Rating</option>
             <option value="name">Sort by Name</option>
             <option value="priceRange">Sort by Price</option>
           </select>
 
-          <button className="flex items-center justify-center border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-50 transition-colors">
+          <button className="flex items-center justify-center border border-gray-300 rounded-xl px-4 py-3 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300 shadow-sm">
             <Filter size={16} className="mr-2" />
             More Filters
           </button>
@@ -198,17 +209,19 @@ setRestaurants(normalizedData);
 
       {/* Results Header */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h2 className="text-2xl lg:text-3xl font-bold text-dark-800">
           {searchQuery ? `Search results for "${searchQuery}"` : 'All Restaurants'}
-        </h1>
-        <span className="text-gray-600">{restaurants.length} restaurants found</span>
+        </h2>
+        <div className="bg-primary-100 px-4 py-2 rounded-xl">
+          <span className="text-primary-700 font-semibold">{restaurants.length} restaurants found</span>
+        </div>
       </div>
 
       {/* Restaurant Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {[...Array(6)].map((_, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden animate-pulse">
+            <div key={index} className="bg-white rounded-2xl shadow-xl overflow-hidden animate-pulse border border-gray-100">
               <div className="h-48 bg-gray-300"></div>
               <div className="p-6">
                 <div className="h-4 bg-gray-300 rounded mb-2"></div>
@@ -220,28 +233,28 @@ setRestaurants(normalizedData);
           ))}
         </div>
       ) : restaurants.length === 0 ? (
-        <div className="text-center py-12">
+        <div className="text-center py-16 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-primary-100">
           <div className="text-gray-400 mb-4">
             <Search size={48} className="mx-auto" />
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No restaurants found</h3>
+          <h3 className="text-xl font-semibold text-dark-800 mb-2">No restaurants found</h3>
           <p className="text-gray-600">Try adjusting your search criteria or explore different options.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {restaurants.map((restaurant) => (
-            <div key={restaurant.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+            <div key={restaurant.id} className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-primary-100">
               <div className="md:flex">
                 <div className="md:w-1/3">
                   <img
                     src={restaurant.image}
                     alt={restaurant.name}
-                    className="h-48 md:h-full w-full object-cover"
+                    className="h-48 md:h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                 </div>
                 <div className="md:w-2/3 p-6">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-xl font-semibold text-gray-900">{restaurant.name}</h3>
+                    <h3 className="text-xl font-semibold text-dark-800">{restaurant.name}</h3>
                     <div className="flex items-center space-x-1">
                       <Star className="text-yellow-400 fill-current" size={16} />
                       <span className="text-sm font-medium text-gray-600">{restaurant.rating}</span>
@@ -249,7 +262,7 @@ setRestaurants(normalizedData);
                   </div>
                   
                   <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
-                    <span className="bg-gray-100 px-2 py-1 rounded">{restaurant.cuisine}</span>
+                    <span className="bg-primary-100 text-primary-700 px-3 py-1 rounded-full font-medium">{restaurant.cuisine}</span>
                     <span className="flex items-center">
                       <DollarSign size={14} className="mr-1" />
                       {restaurant.priceRange}
@@ -271,7 +284,7 @@ setRestaurants(normalizedData);
                   
                   <Link
                     to={`/restaurant/${restaurant.id}`}
-                    className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center py-3 rounded-lg font-semibold transition-colors"
+                    className="block w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white text-center py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     View Details & Book
                   </Link>
@@ -281,6 +294,7 @@ setRestaurants(normalizedData);
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 };

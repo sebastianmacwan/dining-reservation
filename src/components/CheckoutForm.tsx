@@ -38,12 +38,19 @@ const CheckoutForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="space-y-6">
       <PaymentElement />
-      <button disabled={!stripe || loading} style={{ marginTop: "20px" }}>
+      <button 
+        disabled={!stripe || loading} 
+        className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center"
+      >
         {loading ? "Processing..." : "Pay now"}
       </button>
-      {message && <div style={{ marginTop: "10px", color: "red" }}>{message}</div>}
+      {message && (
+        <div className="mt-4 p-4 border border-red-500 text-red-700 bg-red-100 rounded-xl text-sm">
+          {message}
+        </div>
+      )}
     </form>
   );
 };
