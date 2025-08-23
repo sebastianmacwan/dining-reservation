@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Search, Star, MapPin, Clock, Users, ChefHat, Calendar } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext'; // Assuming AuthContext is in this path
 
@@ -9,6 +9,10 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [featuredRestaurants, setFeaturedRestaurants] = useState([]);
 
+  const handleNavClick = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     fetchFeaturedRestaurants();
   }, []);
@@ -88,11 +92,11 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-dark-900/90 to-dark-800/80"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
             <div className="text-center space-y-8">
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight animate-fade-in">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in">
                 Discover Your Perfect
                 <span className="block bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">Dining Experience</span>
               </h1>
-              <p className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-200 animate-slide-up">
+              <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto text-gray-200 animate-slide-up px-4">
                 Book tables at the finest restaurants in your city. From intimate dinners to celebrations, find your ideal spot.
               </p>
 
@@ -106,12 +110,12 @@ const Home = () => {
                       placeholder="Search restaurants, cuisines, or locations..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 rounded-xl text-gray-900 text-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/95 backdrop-blur-sm border border-white/20 shadow-xl"
+                      className="w-full pl-12 pr-4 py-3 sm:py-4 rounded-xl text-gray-900 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/95 backdrop-blur-sm border border-white/20 shadow-xl"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+                    className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
                   >
                     Search
                   </button>
@@ -125,22 +129,22 @@ const Home = () => {
       {/* Stats Section */}
       <section className="bg-white py-16 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-dark-800 mb-2">500+</div>
-              <div className="text-gray-600 text-sm md:text-base">Partner Restaurants</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark-800 mb-2">500+</div>
+              <div className="text-gray-600 text-xs sm:text-sm md:text-base">Partner Restaurants</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-dark-800 mb-2">50K+</div>
-              <div className="text-gray-600 text-sm md:text-base">Happy Customers</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark-800 mb-2">50K+</div>
+              <div className="text-gray-600 text-xs sm:text-sm md:text-base">Happy Customers</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-dark-800 mb-2">100K+</div>
-              <div className="text-gray-600 text-sm md:text-base">Reservations Made</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark-800 mb-2">100K+</div>
+              <div className="text-gray-600 text-xs sm:text-sm md:text-base">Reservations Made</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-dark-800 mb-2">4.9★</div>
-              <div className="text-gray-600 text-sm md:text-base">Average Rating</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark-800 mb-2">4.9★</div>
+              <div className="text-gray-600 text-xs sm:text-sm md:text-base">Average Rating</div>
             </div>
           </div>
         </div>
@@ -149,39 +153,39 @@ const Home = () => {
       <section className="bg-gradient-to-br from-gray-50 to-primary-50/30 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-dark-800">Why Choose DineBook?</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dark-800">Why Choose DineBook?</h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Experience seamless dining reservations with our comprehensive booking platform
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           <div className="text-center p-8 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <Calendar className="text-primary-600" size={32} />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <Calendar className="text-white" size={24} />
             </div>
-            <h3 className="text-xl font-semibold text-dark-800 mb-3">Easy Booking</h3>
-            <p className="text-gray-600">
+            <h3 className="text-lg sm:text-xl font-semibold text-dark-800 mb-3">Easy Booking</h3>
+            <p className="text-gray-600 text-sm sm:text-base">
               Book your table in just a few clicks. Choose your preferred time, date, and party size.
             </p>
           </div>
 
           <div className="text-center p-8 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-            <div className="w-20 h-20 bg-gradient-to-br from-accent-400 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <ChefHat className="text-white" size={32} />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent-400 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <ChefHat className="text-white" size={24} />
             </div>
-            <h3 className="text-xl font-semibold text-dark-800 mb-3">Curated Restaurants</h3>
-            <p className="text-gray-600">
+            <h3 className="text-lg sm:text-xl font-semibold text-dark-800 mb-3">Curated Restaurants</h3>
+            <p className="text-gray-600 text-sm sm:text-base">
               Discover handpicked restaurants with verified reviews and detailed information.
             </p>
           </div>
 
           <div className="text-center p-8 rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-            <div className="w-20 h-20 bg-gradient-to-br from-dark-600 to-dark-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <Clock className="text-primary-600" size={32} />
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-dark-600 to-dark-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <Clock className="text-white" size={24} />
             </div>
-            <h3 className="text-xl font-semibold text-dark-800 mb-3">Real-time Availability</h3>
-            <p className="text-gray-600">
+            <h3 className="text-lg sm:text-xl font-semibold text-dark-800 mb-3">Real-time Availability</h3>
+            <p className="text-gray-600 text-sm sm:text-base">
               See live availability and book instantly. No waiting, no uncertainty.
             </p>
           </div>
@@ -194,51 +198,51 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h2 className="text-3xl font-bold text-dark-800">Featured Restaurants</h2>
-            <p className="text-gray-600 mt-2">Discover the most popular dining destinations</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-dark-800">Featured Restaurants</h2>
+            <p className="text-gray-600 mt-2 text-sm sm:text-base">Discover the most popular dining destinations</p>
           </div>
-          <Link
-            to="/restaurants"
-            className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          <button
+            onClick={() => handleNavClick('/restaurants')}
+            className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             View All
-          </Link>
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {featuredRestaurants.map((restaurant) => (
             <div key={restaurant.id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-48 overflow-hidden">
                 <img
                   src={restaurant.image}
                   alt={restaurant.name}
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
                   {restaurant.priceRange}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-semibold text-dark-800">{restaurant.name}</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold text-dark-800">{restaurant.name}</h3>
                   <div className="flex items-center space-x-1">
                     <Star className="text-yellow-400 fill-current" size={16} />
                     <span className="text-sm font-medium text-gray-600">{restaurant.rating}</span>
                   </div>
                 </div>
-                <p className="text-gray-600 mb-2">{restaurant.cuisine}</p>
+                <p className="text-gray-600 mb-2 text-sm sm:text-base">{restaurant.cuisine}</p>
                 <div className="flex items-center text-gray-500 text-sm mb-4">
                   <MapPin size={14} className="mr-1" />
                   {restaurant.address}
                 </div>
 
-                <Link
-                  to={`/restaurant/${restaurant.id}`}
-                  className="block w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white text-center py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                <button
+                  onClick={() => handleNavClick(`/restaurant/${restaurant.id}`)}
+                  className="block w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white text-center py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
                   View Details & Book
-                </Link>
+                </button>
               </div>
             </div>
           ))}
@@ -250,39 +254,39 @@ const Home = () => {
       <section className="bg-gradient-to-br from-dark-900 to-dark-800 py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
               Simple steps to your perfect dining experience
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 text-xl sm:text-2xl font-bold">
                 1
               </div>
-              <h3 className="text-xl font-semibold mb-3">Browse & Search</h3>
-              <p className="text-gray-300">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Browse & Search</h3>
+              <p className="text-gray-300 text-sm sm:text-base">
                 Explore our curated selection of restaurants and find the perfect match for your taste and occasion.
               </p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center mx-auto mb-6 text-xl sm:text-2xl font-bold">
                 2
               </div>
-              <h3 className="text-xl font-semibold mb-3">Book Your Table</h3>
-              <p className="text-gray-300">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Book Your Table</h3>
+              <p className="text-gray-300 text-sm sm:text-base">
                 Select your preferred date, time, and party size. Get instant confirmation for your reservation.
               </p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full flex items-center justify-center mx-auto mb-6 text-xl sm:text-2xl font-bold">
                 3
               </div>
-              <h3 className="text-xl font-semibold mb-3">Enjoy Your Meal</h3>
-              <p className="text-gray-300">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3">Enjoy Your Meal</h3>
+              <p className="text-gray-300 text-sm sm:text-base">
                 Arrive at the restaurant and enjoy your dining experience. Rate and review to help others.
               </p>
             </div>
@@ -298,26 +302,26 @@ const Home = () => {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="relative text-center space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold">Ready to Dine?</h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Ready to Dine?</h2>
+            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto px-4">
               Join thousands of satisfied diners who trust DineBook for their restaurant reservations.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/restaurants"
-                className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 inline-flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
+              <button
+                onClick={() => handleNavClick('/restaurants')}
+                className="bg-white text-primary-600 hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 inline-flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105"
               >
                 <Search className="mr-2" size={20} />
                 Find Restaurants
-              </Link>
+              </button>
               {!user && (
-                <Link
-                  to="/signup"
-                  className="border-2 border-white/50 hover:bg-white hover:text-primary-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 inline-flex items-center justify-center backdrop-blur-sm"
+                <button
+                  onClick={() => handleNavClick('/signup')}
+                  className="border-2 border-white/50 hover:bg-white hover:text-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 inline-flex items-center justify-center backdrop-blur-sm"
                 >
                   <Users className="mr-2" size={20} />
                   Create Account
-                </Link>
+                </button>
               )}
             </div>
           </div>

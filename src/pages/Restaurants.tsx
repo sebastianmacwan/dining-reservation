@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Search, Filter, Star, MapPin, Clock, DollarSign, ChefHat } from 'lucide-react';
 
 interface Restaurant {
@@ -16,6 +16,7 @@ interface Restaurant {
 
 const Restaurants: React.FC = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
@@ -23,6 +24,10 @@ const Restaurants: React.FC = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
   const [sortBy, setSortBy] = useState('rating');
 
+  const handleNavClick = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     fetchRestaurants();
   }, [searchQuery, selectedCuisine, selectedPriceRange, sortBy]);
@@ -137,17 +142,17 @@ setRestaurants(normalizedData);
       {/* Search and Filters */}
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 mb-8 border border-primary-100">
         <div className="flex items-center mb-6">
-          <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
-            <ChefHat className="text-white" size={24} />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
+            <ChefHat className="text-white" size={20} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-dark-800">Find Your Perfect Restaurant</h1>
-            <p className="text-gray-600">Discover amazing dining experiences</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-dark-800">Find Your Perfect Restaurant</h1>
+            <p className="text-gray-600 text-sm sm:text-base">Discover amazing dining experiences</p>
           </div>
         </div>
         
         <form onSubmit={handleSearch} className="mb-6">
-          <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-primary-500 transition-colors" size={20} />
               <input
@@ -155,23 +160,23 @@ setRestaurants(normalizedData);
                 placeholder="Search restaurants..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm text-lg"
+                className="w-full pl-12 pr-4 py-3 sm:py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm text-base sm:text-lg"
               />
             </div>
             <button
               type="submit"
-              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               Search
             </button>
           </div>
         </form>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <select
             value={selectedCuisine}
             onChange={(e) => setSelectedCuisine(e.target.value)}
-            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
+            className="border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm text-sm sm:text-base"
           >
             <option value="">All Cuisines</option>
             {cuisines.map((cuisine) => (
@@ -182,7 +187,7 @@ setRestaurants(normalizedData);
           <select
             value={selectedPriceRange}
             onChange={(e) => setSelectedPriceRange(e.target.value)}
-            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
+            className="border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm text-sm sm:text-base"
           >
             <option value="">All Prices</option>
             {priceRanges.map((price) => (
@@ -193,14 +198,14 @@ setRestaurants(normalizedData);
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm"
+            className="border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 bg-primary-50/50 focus:bg-white shadow-sm text-sm sm:text-base"
           >
             <option value="rating">Sort by Rating</option>
             <option value="name">Sort by Name</option>
             <option value="priceRange">Sort by Price</option>
           </select>
 
-          <button className="flex items-center justify-center border border-gray-300 rounded-xl px-4 py-3 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300 shadow-sm">
+          <button className="flex items-center justify-center border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300 shadow-sm text-sm sm:text-base">
             <Filter size={16} className="mr-2" />
             More Filters
           </button>
@@ -208,21 +213,21 @@ setRestaurants(normalizedData);
       </div>
 
       {/* Results Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl lg:text-3xl font-bold text-dark-800">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-dark-800">
           {searchQuery ? `Search results for "${searchQuery}"` : 'All Restaurants'}
         </h2>
-        <div className="bg-primary-100 px-4 py-2 rounded-xl">
-          <span className="text-primary-700 font-semibold">{restaurants.length} restaurants found</span>
+        <div className="bg-primary-100 px-3 sm:px-4 py-2 rounded-xl">
+          <span className="text-primary-700 font-semibold text-sm sm:text-base">{restaurants.length} restaurants found</span>
         </div>
       </div>
 
       {/* Restaurant Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-xl overflow-hidden animate-pulse border border-gray-100">
-              <div className="h-48 bg-gray-300"></div>
+              <div className="h-40 sm:h-48 bg-gray-300"></div>
               <div className="p-6">
                 <div className="h-4 bg-gray-300 rounded mb-2"></div>
                 <div className="h-3 bg-gray-300 rounded mb-4 w-2/3"></div>
@@ -237,31 +242,31 @@ setRestaurants(normalizedData);
           <div className="text-gray-400 mb-4">
             <Search size={48} className="mx-auto" />
           </div>
-          <h3 className="text-xl font-semibold text-dark-800 mb-2">No restaurants found</h3>
-          <p className="text-gray-600">Try adjusting your search criteria or explore different options.</p>
+          <h3 className="text-lg sm:text-xl font-semibold text-dark-800 mb-2">No restaurants found</h3>
+          <p className="text-gray-600 text-sm sm:text-base px-4">Try adjusting your search criteria or explore different options.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {restaurants.map((restaurant) => (
             <div key={restaurant.id} className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-primary-100">
-              <div className="md:flex">
-                <div className="md:w-1/3">
+              <div className="sm:flex">
+                <div className="sm:w-1/3">
                   <img
                     src={restaurant.image}
                     alt={restaurant.name}
-                    className="h-48 md:h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    className="h-40 sm:h-48 md:h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                 </div>
-                <div className="md:w-2/3 p-6">
+                <div className="sm:w-2/3 p-4 sm:p-6">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-xl font-semibold text-dark-800">{restaurant.name}</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold text-dark-800">{restaurant.name}</h3>
                     <div className="flex items-center space-x-1">
                       <Star className="text-yellow-400 fill-current" size={16} />
                       <span className="text-sm font-medium text-gray-600">{restaurant.rating}</span>
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-gray-600 mb-3">
                     <span className="bg-primary-100 text-primary-700 px-3 py-1 rounded-full font-medium">{restaurant.cuisine}</span>
                     <span className="flex items-center">
                       <DollarSign size={14} className="mr-1" />
@@ -269,9 +274,9 @@ setRestaurants(normalizedData);
                     </span>
                   </div>
                   
-                  <p className="text-gray-600 mb-3 text-sm line-clamp-2">{restaurant.description}</p>
+                  <p className="text-gray-600 mb-3 text-xs sm:text-sm line-clamp-2">{restaurant.description}</p>
                   
-                  <div className="space-y-2 text-sm text-gray-600 mb-4">
+                  <div className="space-y-2 text-xs sm:text-sm text-gray-600 mb-4">
                     <div className="flex items-center">
                       <MapPin size={14} className="mr-2 text-primary-500" />
                       {restaurant.address}
@@ -282,12 +287,12 @@ setRestaurants(normalizedData);
                     </div>
                   </div>
                   
-                  <Link
-                    to={`/restaurant/${restaurant.id}`}
-                    className="block w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white text-center py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  <button
+                    onClick={() => handleNavClick(`/restaurant/${restaurant.id}`)}
+                    className="block w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white text-center py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     View Details & Book
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>

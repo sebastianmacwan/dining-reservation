@@ -23,11 +23,19 @@ const Header = () => {
   useEffect(() => {
     setIsMenuOpen(false);
     setIsUserMenuOpen(false);
+    // Scroll to top when route changes
+    window.scrollTo(0, 0);
   }, [location]);
 
+  const handleNavClick = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+    setIsMenuOpen(false);
+    setIsUserMenuOpen(false);
+  };
   const handleLogout = () => {
     logout();
-    navigate('/');
+    handleNavClick('/');
     setIsUserMenuOpen(false);
   };
 
@@ -39,38 +47,38 @@ const Header = () => {
         ? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-200/50' 
         : 'bg-white/90 backdrop-blur-sm shadow-sm'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-3 group">
+            <button onClick={() => handleNavClick('/')} className="flex items-center space-x-2 sm:space-x-3 group">
               <div className="relative">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
-                  <ChefHat className="text-white" size={20} />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+                  <ChefHat className="text-white" size={16} />
                 </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="hidden sm:block">
-                <span className="font-bold text-xl lg:text-2xl bg-gradient-to-r from-dark-800 to-dark-600 bg-clip-text text-transparent">
+              <div className="hidden xs:block">
+                <span className="font-bold text-lg sm:text-xl lg:text-2xl bg-gradient-to-r from-dark-800 to-dark-600 bg-clip-text text-transparent">
                   DineBook
                 </span>
-                <div className="text-xs text-primary-600 -mt-1 font-medium">Premium Dining</div>
+                <div className="text-xs sm:text-xs text-primary-600 -mt-1 font-medium">Premium Dining</div>
               </div>
-            </Link>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center space-x-1">
             {[
               { path: '/', label: 'Home' },
               { path: '/restaurants', label: 'Restaurants' },
               { path: '/about', label: 'About' },
               { path: '/contact', label: 'Contact' }
             ].map((item) => (
-              <Link
+              <button
                 key={item.path}
-                to={item.path}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
+                onClick={() => handleNavClick(item.path)}
+                className={`relative px-3 lg:px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
                   isActive(item.path)
                     ? 'text-primary-600 bg-primary-50'
                     : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
@@ -80,13 +88,13 @@ const Header = () => {
                 {isActive(item.path) && (
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-500 rounded-full"></div>
                 )}
-              </Link>
+              </button>
             ))}
             
             {user && (
-              <Link
-                to="/dashboard"
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
+              <button
+                onClick={() => handleNavClick('/dashboard')}
+                className={`relative px-3 lg:px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
                   isActive('/dashboard')
                     ? 'text-primary-600 bg-primary-50'
                     : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
@@ -96,22 +104,22 @@ const Header = () => {
                 {isActive('/dashboard') && (
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-500 rounded-full"></div>
                 )}
-              </Link>
+              </button>
             )}
           </nav>
 
           {/* User Menu */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
             {user ? (
               <div className="relative">
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center space-x-3 text-dark-600 hover:text-primary-600 transition-all duration-300 p-2 rounded-xl hover:bg-primary-50 group"
+                  className="flex items-center space-x-2 lg:space-x-3 text-dark-600 hover:text-primary-600 transition-all duration-300 p-2 rounded-xl hover:bg-primary-50 group"
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-100 to-accent-100 rounded-xl flex items-center justify-center group-hover:from-primary-200 group-hover:to-accent-200 transition-all duration-300 shadow-md">
-                    <User size={18} className="text-primary-600" />
+                  <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary-100 to-accent-100 rounded-xl flex items-center justify-center group-hover:from-primary-200 group-hover:to-accent-200 transition-all duration-300 shadow-md">
+                    <User size={16} className="text-primary-600" />
                   </div>
-                  <div className="text-left">
+                  <div className="text-left hidden lg:block">
                     <div className="text-sm font-semibold text-dark-700">{user.name}</div>
                     <div className="text-xs text-primary-600 capitalize font-medium">{user.role}</div>
                   </div>
@@ -120,30 +128,28 @@ const Header = () => {
                 {isUserMenuOpen && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setIsUserMenuOpen(false)}></div>
-                    <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl py-2 z-20 border border-primary-100">
+                    <div className="absolute right-0 mt-2 w-48 lg:w-64 bg-white rounded-2xl shadow-2xl py-2 z-20 border border-primary-100">
                       <div className="px-4 py-3 border-b border-primary-100">
                         <div className="font-semibold text-dark-800">{user.name}</div>
                         <div className="text-sm text-primary-600">{user.email}</div>
                       </div>
                       
-                      <Link
-                        to="/dashboard"
-                        className="flex items-center px-4 py-3 text-sm text-dark-600 hover:bg-primary-50 transition-colors"
-                        onClick={() => setIsUserMenuOpen(false)}
+                      <button
+                        onClick={() => handleNavClick('/dashboard')}
+                        className="flex items-center w-full px-4 py-3 text-sm text-dark-600 hover:bg-primary-50 transition-colors"
                       >
                         <Calendar size={18} className="mr-3 text-primary-500" />
                         My Bookings
-                      </Link>
+                      </button>
                       
                       {user.role === 'admin' && (
-                        <Link
-                          to="/admin"
-                          className="flex items-center px-4 py-3 text-sm text-dark-600 hover:bg-primary-50 transition-colors"
-                          onClick={() => setIsUserMenuOpen(false)}
+                        <button
+                          onClick={() => handleNavClick('/admin')}
+                          className="flex items-center w-full px-4 py-3 text-sm text-dark-600 hover:bg-primary-50 transition-colors"
                         >
                           <Settings size={18} className="mr-3 text-primary-500" />
                           Admin Panel
-                        </Link>
+                        </button>
                       )}
                       
                       <div className="border-t border-primary-100 mt-2 pt-2">
@@ -160,38 +166,38 @@ const Header = () => {
                 )}
               </div>
             ) : (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to="/login"
-                  className="text-dark-600 hover:text-primary-600 px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg hover:bg-primary-50"
+              <div className="flex items-center space-x-2 lg:space-x-3">
+                <button
+                  onClick={() => handleNavClick('/login')}
+                  className="text-dark-600 hover:text-primary-600 px-3 lg:px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg hover:bg-primary-50"
                 >
                   Sign In
-                </Link>
-                <Link
-                  to="/signup"
-                  className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                </button>
+                <button
+                  onClick={() => handleNavClick('/signup')}
+                  className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-4 lg:px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Sign Up
-                </Link>
+                </button>
               </div>
             )}
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="relative p-2 text-dark-600 hover:text-primary-600 transition-colors rounded-lg hover:bg-primary-50"
             >
-              <div className="w-6 h-6 relative">
-                <span className={`absolute block w-6 h-0.5 bg-current transform transition-all duration-300 ${
+              <div className="w-5 h-5 sm:w-6 sm:h-6 relative">
+                <span className={`absolute block w-5 sm:w-6 h-0.5 bg-current transform transition-all duration-300 ${
                   isMenuOpen ? 'rotate-45 top-3' : 'top-1'
                 }`}></span>
-                <span className={`absolute block w-6 h-0.5 bg-current transform transition-all duration-300 top-3 ${
+                <span className={`absolute block w-5 sm:w-6 h-0.5 bg-current transform transition-all duration-300 top-2 sm:top-3 ${
                   isMenuOpen ? 'opacity-0' : 'opacity-100'
                 }`}></span>
-                <span className={`absolute block w-6 h-0.5 bg-current transform transition-all duration-300 ${
-                  isMenuOpen ? '-rotate-45 top-3' : 'top-5'
+                <span className={`absolute block w-5 sm:w-6 h-0.5 bg-current transform transition-all duration-300 ${
+                  isMenuOpen ? '-rotate-45 top-2 sm:top-3' : 'top-4 sm:top-5'
                 }`}></span>
               </div>
             </button>
@@ -199,7 +205,7 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div className="py-4 space-y-2 border-t border-primary-200/50 bg-white/95 backdrop-blur-sm">
@@ -209,42 +215,39 @@ const Header = () => {
               { path: '/about', label: 'About' },
               { path: '/contact', label: 'Contact' }
             ].map((item) => (
-              <Link
+              <button
                 key={item.path}
-                to={item.path}
-                className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
+                onClick={() => handleNavClick(item.path)}
+                className={`block w-full text-left px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
                   isActive(item.path)
                     ? 'text-primary-600 bg-primary-50'
                     : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
-              </Link>
+              </button>
             ))}
             
             {user ? (
               <>
-                <Link
-                  to="/dashboard"
-                  className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
+                <button
+                  onClick={() => handleNavClick('/dashboard')}
+                  className={`block w-full text-left px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
                     isActive('/dashboard')
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-dark-600 hover:text-primary-600 hover:bg-primary-50'
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   My Bookings
-                </Link>
+                </button>
                 
                 {user.role === 'admin' && (
-                  <Link
-                    to="/admin"
-                    className="block px-4 py-3 text-sm font-medium text-dark-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
+                  <button
+                    onClick={() => handleNavClick('/admin')}
+                    className="block w-full text-left px-4 py-3 text-sm font-medium text-dark-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 rounded-lg"
                   >
                     Admin Panel
-                  </Link>
+                  </button>
                 )}
                 
                 <div className="border-t border-primary-200 mt-4 pt-4">
@@ -262,20 +265,18 @@ const Header = () => {
               </>
             ) : (
               <div className="space-y-2 border-t border-primary-200 pt-4">
-                <Link
-                  to="/login"
-                  className="block px-4 py-3 text-sm font-medium text-dark-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 rounded-lg"
-                  onClick={() => setIsMenuOpen(false)}
+                <button
+                  onClick={() => handleNavClick('/login')}
+                  className="block w-full text-left px-4 py-3 text-sm font-medium text-dark-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-300 rounded-lg"
                 >
                   Sign In
-                </Link>
-                <Link
-                  to="/signup"
-                  className="block mx-4 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl text-sm font-semibold text-center transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  onClick={() => setIsMenuOpen(false)}
+                </button>
+                <button
+                  onClick={() => handleNavClick('/signup')}
+                  className="block w-full mx-4 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl text-sm font-semibold text-center transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   Sign Up
-                </Link>
+                </button>
               </div>
             )}
           </div>
